@@ -1,5 +1,5 @@
 /**
- * @author Connie Chen and you also suckweqhldfskjn
+ * @author Connie Chen didnt add me im so sad
  * @author Tiffany Lee iis dum
  */
 public class Book {
