@@ -2,6 +2,7 @@
  * @author Connie Chen didnt add me im so sad gvhk
  * @author Tiffany Lee iis dum
  * you're ugly
+ * we're actually all ugly
  */
 public class Book {
     private String number; // a five digit serial number unique to the book -- starting 10001
