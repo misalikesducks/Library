@@ -1,5 +1,5 @@
 /**
- * @author Connie Chen and you also suck
+ * @author Connie Chen and you also suckweqhldfskjn
  * @author Tiffany Lee iis dum
  */
 public class Book {
