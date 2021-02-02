@@ -1,6 +1,6 @@
 /**
  * @author Connie Chen
- * @author Tiffany Lee
+ * @author Tiffany Lee iis dum
  */
 public class Book {
     private String number; // a five digit serial number unique to the book -- starting 10001
