@@ -1,8 +1,7 @@
 /**
- * @author Connie Chen didnt add me im so sad gvhk
- * @author Tiffany Lee iis dum
- * you're ugly
- * we're actually all ugly
+ * @author Connie Chen
+ * @author Tiffany Lee
+ *
  */
 public class Book {
     private String number; // a five digit serial number unique to the book -- starting 10001
@@ -12,10 +11,13 @@ public class Book {
 
     @Override
     public boolean equals(Object obj){
-        return false;
+        //returns if the serial number of 2 book objects are the same
+        return this.number.equals(obj.number);
     }
     @Override
     public String toString(){
+        //returns a textual representation of a book
+        //Book#10007::Design Patterns::5/30/1996::is available.
         return null;
     }
 
