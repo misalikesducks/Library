@@ -15,6 +15,7 @@ public class Kiosk {
        {
             String input  = scan.nextLine();
             String[] arrOfInput = input.split(); //fix
+            System.out.println(input);
        }
 
        System.out.println("Kiosk session ended.");
