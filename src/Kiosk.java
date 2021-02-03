@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Kiosk {
     // handles inputs and outputs
-    public void run(){
+    public void run() {
        System.out.println("Library Kiosk running.");
        Scanner scan = new Scanner(System.in);
 

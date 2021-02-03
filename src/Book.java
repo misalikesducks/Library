@@ -6,7 +6,7 @@
 public class Book {
     private String number; // a five digit serial number unique to the book -- starting 10001
     private String name;
-    private boolean checkedOut;
+    private boolean checkedOut; // t = someone took it u fool, f = you can take it
     private Date datePublished;
 
     @Override
