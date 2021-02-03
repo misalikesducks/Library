@@ -12,13 +12,14 @@ public class Book {
     @Override
     public boolean equals(Object obj){
         //returns if the serial number of 2 book objects are the same
-        return this.number.equals(obj.number);
+        //return this.number.equals(obj.number);
+        return false;
     }
     @Override
     public String toString(){
         //returns a textual representation of a book
         //Book#10007::Design Patterns::5/30/1996::is available.
-        return null;
+        return "you're stupid";
     }
 
 

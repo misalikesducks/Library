@@ -11,12 +11,45 @@ public class Kiosk {
        System.out.println("Library Kiosk running.");
        Scanner scan = new Scanner(System.in);
 
-       while(scan.hasNextLine()) //loops while there are inputs
-       {
+       boolean breakLoop = false;
+
+       while(!breakLoop && scan.hasNextLine()) { // loops while there are inputs
+
             String input  = scan.nextLine();
-            String[] arrOfInput = input.split(); //fix
-            System.out.println(input);
+            String[] arrOfInput = input.split(",", 0); //splits string by commas
+
+            switch(arrOfInput[0]) {
+               case "A": // add
+                  System.out.println("Invalid Date!");
+                  System.out.println("--name of book--" + " added to the Library.");
+                  break;
+               case "R": // remove
+                  System.out.println("Unable to remove, the library does not have this book.");
+                  System.out.println("Book# " + arrOfInput[1] + " removed.");
+                  break;
+               case "O": // check out
+                  System.out.println("Book#" + arrOfInput[1] + " is not available.");
+                  System.out.println("You've checked out Book#" + arrOfInput[1]);
+                  break;
+               case "I": // return
+                  System.out.println("Unable to return Book#" + arrOfInput[1]);
+                  System.out.println("Book#" + arrOfInput[1] + " return has been completed. Thanks!");
+                  break;
+               case "PA": // output the list of books to the console w/ the current sequence
+                  break;
+               case "PD": // output the list of books by the dates published in ascending order
+                  break;
+               case "PN": // output the list of books by the book number in ascending order
+                  break;
+               case "Q":
+                  breakLoop = true;
+                  break;
+               default: // invalid command or input
+                  System.out.println("Invalid command!");
+                  break;
+            }
        }
+       scan.close();
 
        System.out.println("Kiosk session ended.");
     }
