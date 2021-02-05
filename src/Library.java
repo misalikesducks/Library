@@ -8,6 +8,7 @@ public class Library {
     private int numBooks; // the number of books currently in the bag
 
     public static final int NOT_FOUND = -1;
+    public static final int BAGSIZE = 4;
 
     public Library() { // default constructor to create an empty bag
         numBooks = 0;
@@ -26,7 +27,7 @@ public class Library {
     }
 
     private void grow() { // helper method to grow the capacity by 4
-        int newTotalNumBooks = this.numBooks + 4; // see if we need to make non magic number
+        int newTotalNumBooks = this.numBooks + BAGSIZE; // see if we need to make non magic number
         Book[] newLibrary = new Book[newTotalNumBooks];
         for(int i = 0; i < this.numBooks; i++)
             newLibrary[i] = books[i];

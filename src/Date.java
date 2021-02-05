@@ -19,24 +19,48 @@ public class Date {
    // need to check for leap year
    public boolean isValid() {
       Calendar c = Calendar.getInstance();
-      if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
+      if(this.year < 1900 || this.year > c.get(Calendar.YEAR))
          return false;
-      }
 
       if(this.month > DECEMBER || this.month < JANUARY)
          return false;
 
       switch(this.month) {
-         case FEBUARY: // leap year check
          case APRIL:
          case JUNE:
          case SEPTEMBER:
          case NOVEMBER:
-            if(this.date > 30) {
+            if(this.date > SHORTMONTH)
                return false;
+         case JANUARY:
+         case MARCH:
+         case MAY:
+         case JULY:
+         case AUGUST:
+         case OCTOBER:
+         case DECEMBER:
+            if(this.date > LONGMONTH)
+               return false;
+         case FEBRUARY:
+            if(this.year % QUADRENNIAL == 0){
+               if(this.year % CENTENNIAL == 0) {
+                  if(this.year % QUATERCENTENNIAL == 0) {
+                     if(this.date > LEAP)
+                        return false;
+                  }
+               }
+               else {
+                  if(this.date > LEAP)
+                     return false;
+               }
+
+            }
+            else {
+               if(this.date > NOT_LEAP)
+                  return false;
             }
 
-
       }
+      return true;
    }
 }
