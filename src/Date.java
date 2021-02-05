@@ -2,6 +2,7 @@
  * @author Connie Chen
  * @author Tiffany Lee
  */
+import Java.util.Calendar;
 
 public class Date {
    private int year;
@@ -14,7 +15,28 @@ public class Date {
    public Date() { //create an object with today's date
 
    }
-   public boolean isValid(){
-      return false;
+
+   // need to check for leap year
+   public boolean isValid() {
+      Calendar c = Calendar.getInstance();
+      if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
+         return false;
+      }
+
+      if(this.month > DECEMBER || this.month < JANUARY)
+         return false;
+
+      switch(this.month) {
+         case FEBUARY: // leap year check
+         case APRIL:
+         case JUNE:
+         case SEPTEMBER:
+         case NOVEMBER:
+            if(this.date > 30) {
+               return false;
+            }
+
+
+      }
    }
 }

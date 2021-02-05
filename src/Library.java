@@ -42,10 +42,15 @@ public class Library {
 
     public boolean remove(Book book) {
         boolean foundBook = false;
-        for(int i = 0; i < numBooks; i++) { //moves target book to the end and remove
+        int targetBookIndex;
+        for(int i = 0; i < numBooks; i++) { //traverses through books
             if(this.books[i].equals(book)) {
-                this.books[i] = this.books[numBooks - 1];
-                this.books[numBooks - 1] = null;
+                targetBookIndex = i;
+                while(targetBookIndex < numBooks - 1) // found target index, shifting all elements after target
+                {
+                    this.books[i] = this.books[i+1];
+                    targetBookIndex++;
+                }
                 foundBook = true;
                 return foundBook;
             }
