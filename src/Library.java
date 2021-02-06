@@ -11,8 +11,8 @@ public class Library {
     public static final int BAGSIZE = 4;
 
     public Library() { // default constructor to create an empty bag
+        this.books = new Book[4];
         numBooks = 0;
-        this.books = new Book[4]; // idk if we need this
     }
 
     private int find(Book book) { // helper method to find a book in the bag

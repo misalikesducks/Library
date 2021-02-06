@@ -45,19 +45,20 @@ public class Date {
       day = c.get(Calendar.DATE);
    }
 
-   //accessor functions
+   // accessor methods
    public int getMonth() {
       return this.month;
    }
+
    public int getYear() {
       return this.year;
    }
+
    public int getDay() {
       return this.day;
    }
 
-   // need to check for leap year
-   public boolean isValid() {
+   public boolean isValid() { // checks if a Date is valid
       Calendar c = Calendar.getInstance();
       if(this.year < 1900 || this.year > c.get(Calendar.YEAR))
          return false;
@@ -107,9 +108,8 @@ public class Date {
       System.out.println("Running testcase 1: ");
       Date date1 = new Date("2//29//2019");
       if(date1.isValid()) {
-         System.out.println("THIS IS TRIGHT");
-      }
-      else {
+         System.out.println("THIS IS RIGHT");
+      } else {
          System.out.println("No");
       }
    }

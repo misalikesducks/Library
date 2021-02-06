@@ -6,8 +6,7 @@ import java.util.StringTokenizer;
 import java.util.Scanner;
 
 public class Kiosk {
-    // handles inputs and outputs
-    public void run() {
+    public void run() { // handles inputs and outputs
        System.out.println("Library Kiosk running.");
        Scanner scan = new Scanner(System.in);
 
@@ -17,6 +16,8 @@ public class Kiosk {
 
             String input  = scan.nextLine();
             String[] arrOfInput = input.split(",", 0); //splits string by commas
+
+            Library bag = new Library();
 
             switch(arrOfInput[0]) {
                case "A": // add
