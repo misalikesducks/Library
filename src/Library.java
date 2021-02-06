@@ -93,6 +93,8 @@ public class Library {
 
     }
     public void printByNumber() { // print the list of books by number (ascending)
+        for(int i = 0; i < numBooks; i++)
+            System.out.println(this.books[i].toString());
     }
 
     // HELPER METHODS
@@ -136,7 +138,7 @@ public class Library {
         // initial index of merged subArray array
         int mergedArrayIndex = left;
         while(firstIndex < sizeOfArray1 && secondindex < sizeOfArray2) {
-            if (leftTemp[firstIndex] <= rightTemp[secondIndex]) {
+            if (!checkDateGreater(leftTemp[firstIndex], rightTemp[secondIndex])) {
                 mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
                 firstIndex++;
             } else {
@@ -159,6 +161,30 @@ public class Library {
             secondIndex++;
             mergedArrayIndex++;
         }
+    }
+
+    //returns true if book1 is published earlier than book2
+    public boolean checkDateGreater(Book book1, Book book2) {
+        if(book1.datePublished.year > book2.datePublished.year)
+            return false;
+        else {
+            if(book1.datePublished.month > book2.dataPublished.month)
+                return false;
+            else {
+                if(book1.datePublished.day > book2.datePublished.day)
+                    return false;
+                else {
+                    if(book1.name.compareTo(book2.name) >= 0)
+                        return false;
+                    else
+                        return true;
+                }
+            }
+        }
+        return true;
+
+
+
 
     }
 }

@@ -89,8 +89,21 @@ public class Date {
                if(this.date > NOT_LEAP)
                   return false;
             }
-
+         default:
+            break;
       }
       return true;
+   }
+
+
+   public static void main(String arg[]) {
+      System.out.println("Running testcase 1: ");
+      Date date1 = new Date("11//12//2020");
+      if(date1.isValid()) {
+         System.out.println("THIS IS TRIGHT");
+      }
+      else {
+         System.out.println("No");
+      }
    }
 }
