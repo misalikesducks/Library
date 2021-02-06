@@ -90,7 +90,7 @@ public class Library {
     }
 
     public void printByDate() { // print the list of books by datePublished (ascending)
-        Book[] sortedLibrary = sortBooks(this.books[]);
+        Book[] sortedLibrary = sortBooks(this.books, 0, this.numBooks - 1);
         for(int i = 0; i < numBooks; i++)
             System.out.println(sortedLibrary[i].toString());
     }
