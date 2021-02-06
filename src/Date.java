@@ -2,7 +2,7 @@
  * @author Connie Chen
  * @author Tiffany Lee
  */
-import Java.util.Calendar;
+import java.util.Calendar;
 
 public class Date {
    private int year;
@@ -42,7 +42,7 @@ public class Date {
       Calendar c = Calendar.getInstance();
       year = c.get(Calendar.YEAR);
       month = c.get(Calendar.MONTH);
-      day = c.get(Calendar.DAY);
+      day = c.get(Calendar.DATE);
    }
 
    // need to check for leap year
@@ -59,7 +59,7 @@ public class Date {
          case JUNE:
          case SEPTEMBER:
          case NOVEMBER:
-            if(this.date > SHORTMONTH)
+            if(this.day > SHORTMONTH)
                return false;
          case JANUARY:
          case MARCH:
@@ -68,21 +68,21 @@ public class Date {
          case AUGUST:
          case OCTOBER:
          case DECEMBER:
-            if(this.date > LONGMONTH)
+            if(this.day > LONGMONTH)
                return false;
          case FEBRUARY:
             if(this.year % QUADRENNIAL == 0){
                if(this.year % CENTENNIAL == 0) {
                   if(this.year % QUATERCENTENNIAL == 0) {
-                     if(this.date > LEAP)
+                     if(this.day > LEAP)
                         return false;
                   }
                } else {
-                  if(this.date > LEAP)
+                  if(this.day > LEAP)
                      return false;
                }
             } else {
-               if(this.date > NOT_LEAP)
+               if(this.day > NOT_LEAP)
                   return false;
             }
          default:
@@ -94,7 +94,7 @@ public class Date {
 
    public static void main(String arg[]) {
       System.out.println("Running testcase 1: ");
-      Date date1 = new Date("11//12//2020");
+      Date date1 = new Date("2//29//2019");
       if(date1.isValid()) {
          System.out.println("THIS IS TRIGHT");
       }
