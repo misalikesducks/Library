@@ -63,7 +63,7 @@ public class Library {
         boolean isAvailable = false;
         for(int i = 0; i < numBooks; i++) {
             if(this.books[i].equals(book) && !this.books[i].getCheckedOut()) {
-                this.books[i].getCheckedOut() = true;
+                this.books[i].setCheckedOut(true);
                 isAvailable = true;
                 break;
             }
@@ -75,7 +75,7 @@ public class Library {
         boolean canReturn = false;
         for(int i = 0; i < numBooks; i++) {
             if(this.books[i].equals(book) && this.books[i].getCheckedOut()) {
-                this.books[i].getCheckedOut() = false;
+                this.books[i].setCheckedOut(false);
                 canReturn = true;
                 break;
             }
@@ -167,13 +167,13 @@ public class Library {
 
     //returns true if book1 is published earlier than book2
     public boolean checkDateGreater(Book book1, Book book2) {
-        if(book1.getDatePublished().year > book2.getDatePublished().year)
+        if(book1.getDatePublished().getYear() > book2.getDatePublished().getYear())
             return false;
         else {
-            if(book1.getDatePublished().month > book2.getDatePublished().month)
+            if(book1.getDatePublished().getMonth() > book2.getDatePublished().getMonth())
                 return false;
             else {
-                if(book1.getDatePublished().day > book2.getDatePublished().day)
+                if(book1.getDatePublished().getDay() > book2.getDatePublished().getDay())
                     return false;
                 else {
                     if(book1.getName().compareTo(book2.getName()) >= 0)
@@ -183,10 +183,6 @@ public class Library {
                 }
             }
         }
-        return true;
-
-
-
 
     }
 }
