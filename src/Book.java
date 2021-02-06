@@ -44,7 +44,7 @@ public class Book {
     }
 
     // modifier methods
-    public void setNumber(String num) {
+    public void setNumber(String num) { // need to implement the number system
         this.number = num;
     }
 

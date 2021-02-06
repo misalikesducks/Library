@@ -17,12 +17,12 @@ public class Kiosk {
             String input  = scan.nextLine();
             String[] arrOfInput = input.split(",", 0); //splits string by commas
 
-            Library bag = new Library();
+            Library bag = new Library(); // makes a new Library instance that we'll use in this method
 
             switch(arrOfInput[0]) {
                case "A": // add
                   System.out.println("Invalid Date!");
-                  System.out.println("--name of book--" + " added to the Library.");
+                  System.out.println(arrOfInput[1] + " added to the Library.");
                   break;
                case "R": // remove
                   System.out.println("Unable to remove, the library does not have this book.");
