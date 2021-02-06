@@ -62,8 +62,8 @@ public class Library {
     public boolean checkOut(Book book) {
         boolean isAvailable = false;
         for(int i = 0; i < numBooks; i++) {
-            if(this.book[i].equals(book) && !this.book[i].checkedOut) {
-                this.book[i].checkedOut = true;
+            if(this.books[i].equals(book) && !this.books[i].checkedOut) {
+                this.books[i].checkedOut = true;
                 isAvailable = true;
                 break;
             }
@@ -74,8 +74,8 @@ public class Library {
     public boolean returns(Book book) {
         boolean canReturn = false;
         for(int i = 0; i < numBooks; i++) {
-            if(this.book[i].equals(book) && this.book[i].checkedOut) {
-                this.book[i].checkedOut = false;
+            if(this.books[i].equals(book) && this.books[i].checkedOut) {
+                this.books[i].checkedOut = false;
                 canReturn = true;
                 break;
             }
@@ -84,9 +84,81 @@ public class Library {
     }
 
     // the only methods we can use system.out
-    public void print(){
-        System.out.println("idk man help");
-    } // print the list of books in the bag
-    public void printByDate(){} // print the list of books by datePublished (ascending)
-    public void printByNumber(){} // print the list of books by number (ascending)
+    public void print() { // print the list of books in the bag
+        for(int i = 0; i < numBooks; i++)
+            System.out.println(this.books[i].toString());
+    }
+
+    public void printByDate() { // print the list of books by datePublished (ascending)
+
+    }
+    public void printByNumber() { // print the list of books by number (ascending)
+    }
+
+    // HELPER METHODS
+
+    public Books[] sortBooks(Book[] originalBooks, int left, int right) {
+        Books[] sortedByDate = originalBooks;
+        if(left < right) {
+            int middle = left + (right - 1) / 2; // find the middle point
+
+            // sort the first and second halves
+            sort(sortedByDate, left, middle);
+            sort(sortedByDate, middle + 1, right);
+
+            merge(sortedByDate, left, middle, right); // merge the sorted halves
+        }
+        return sortedByDate;
+    }
+
+    void merge(Book[] mergingBooks, int left, int middle, int right) {
+        // sizes of two subarrays to be merged
+        int sizeOfArray1 = middle - left + 1;
+        int sizeOfArray2 = right - middle;
+
+        // temp arrays
+        Book[] leftTemp = new Book[sizeOfArray1];
+        Book[] rightTemp = new Book[sizeofArray2];
+
+        // copy data into temp arrays
+        for(int i = 0; i < sizeOfArray1; ++i) {
+            leftTemp[i] = mergingBooks[left + i];
+        }
+        for(int j = 0; j < sizeOfArray2; ++j) {
+            rightTemp[j] = mergingBooks[middle + 1 + j];
+        }
+
+        // MERGING TEMP ARRAYS
+
+        // initial indices of first and second subArrays
+        int firstIndex = 0, secondIndex = 0;
+
+        // initial index of merged subArray array
+        int mergedArrayIndex = left;
+        while(firstIndex < sizeOfArray1 && secondindex < sizeOfArray2) {
+            if (leftTemp[firstIndex] <= rightTemp[secondIndex]) {
+                mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
+                firstIndex++;
+            } else {
+                mergingBooks[mergedArrayIndex] = rightTemp[secondIndex];
+                secondIndex++;
+            }
+            mergedArrayIndex++;
+        }
+
+        // copy remaining elements of leftTemp if left over
+        while(firstIndex < sizeOfArray1) {
+            mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
+            firstIndex++;
+            mergedArrayIndex++;
+        }
+
+        // copy remaining elements of rightTemp if left over
+        while(secondIndex < sizeOfArray2) {
+            mergingBooks[mergedArrayIndex] = rightTemp[secondIndex];
+            secondIndex++;
+            mergedArrayIndex++;
+        }
+
+    }
 }

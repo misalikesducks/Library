@@ -10,16 +10,20 @@ public class Book {
     private Date datePublished;
 
     @Override
-    public boolean equals(Object obj){
-        //returns if the serial number of 2 book objects are the same
-        //return this.number.equals(obj.number);
-        return false;
+    public boolean equals(Object obj) { //returns if the serial number of 2 book objects are the same
+        return this.number.equals(obj.number);
     }
+
     @Override
-    public String toString(){
-        //returns a textual representation of a book
-        //Book#10007::Design Patterns::5/30/1996::is available.
-        return "you're stupid";
+    public String toString() { //returns a textual representation o
+        String availability;
+
+        if(checkedOut)
+            availability = "is checked out.";
+        else
+            availability = "is available.";
+
+        return "Book#" + this.number + "::" + this.name + "::" + this.datePublished + "::" + availability;
     }
 
 

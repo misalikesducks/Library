@@ -36,10 +36,18 @@ public class Kiosk {
                   System.out.println("Book#" + arrOfInput[1] + " return has been completed. Thanks!");
                   break;
                case "PA": // output the list of books to the console w/ the current sequence
+                  System.out.println("**List of books in the library.");
+                  // use the print() method from Library
+                  System.out.println("**End of list");
                   break;
                case "PD": // output the list of books by the dates published in ascending order
+                  System.out.println("**List of books by the dates published.");
+                  // use the printbyDate() method from library
+                  System.out.println("**End of list");
                   break;
                case "PN": // output the list of books by the book number in ascending order
+                  System.out.println("**List of books by book numbers.");
+                  System.out.println("**End of list");
                   break;
                case "Q":
                   breakLoop = true;
