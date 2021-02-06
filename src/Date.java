@@ -45,7 +45,6 @@ public class Date {
       day = c.get(Calendar.DAY);
    }
 
-
    // need to check for leap year
    public boolean isValid() {
       Calendar c = Calendar.getInstance();
@@ -78,14 +77,11 @@ public class Date {
                      if(this.date > LEAP)
                         return false;
                   }
-               }
-               else {
+               } else {
                   if(this.date > LEAP)
                      return false;
                }
-
-            }
-            else {
+            } else {
                if(this.date > NOT_LEAP)
                   return false;
             }
