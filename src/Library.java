@@ -62,8 +62,8 @@ public class Library {
     public boolean checkOut(Book book) {
         boolean isAvailable = false;
         for(int i = 0; i < numBooks; i++) {
-            if(this.books[i].equals(book) && !this.books[i].checkedOut) {
-                this.books[i].checkedOut = true;
+            if(this.books[i].equals(book) && !this.books[i].getCheckedOut()) {
+                this.books[i].getCheckedOut() = true;
                 isAvailable = true;
                 break;
             }
@@ -74,8 +74,8 @@ public class Library {
     public boolean returns(Book book) {
         boolean canReturn = false;
         for(int i = 0; i < numBooks; i++) {
-            if(this.books[i].equals(book) && this.books[i].checkedOut) {
-                this.books[i].checkedOut = false;
+            if(this.books[i].equals(book) && this.books[i].getCheckedOut()) {
+                this.books[i].getCheckedOut() = false;
                 canReturn = true;
                 break;
             }
@@ -99,14 +99,14 @@ public class Library {
 
     // HELPER METHODS
 
-    public Books[] sortBooks(Book[] originalBooks, int left, int right) {
-        Books[] sortedByDate = originalBooks;
+    public Book[] sortBooks(Book[] originalBooks, int left, int right) {
+        Book[] sortedByDate = originalBooks;
         if(left < right) {
             int middle = left + (right - 1) / 2; // find the middle point
 
             // sort the first and second halves
-            sort(sortedByDate, left, middle);
-            sort(sortedByDate, middle + 1, right);
+            sortBooks(sortedByDate, left, middle);
+            sortBooks(sortedByDate, middle + 1, right);
 
             merge(sortedByDate, left, middle, right); // merge the sorted halves
         }
@@ -120,7 +120,7 @@ public class Library {
 
         // temp arrays
         Book[] leftTemp = new Book[sizeOfArray1];
-        Book[] rightTemp = new Book[sizeofArray2];
+        Book[] rightTemp = new Book[sizeOfArray2];
 
         // copy data into temp arrays
         for(int i = 0; i < sizeOfArray1; ++i) {
@@ -137,7 +137,7 @@ public class Library {
 
         // initial index of merged subArray array
         int mergedArrayIndex = left;
-        while(firstIndex < sizeOfArray1 && secondindex < sizeOfArray2) {
+        while(firstIndex < sizeOfArray1 && secondIndex < sizeOfArray2) {
             if (!checkDateGreater(leftTemp[firstIndex], rightTemp[secondIndex])) {
                 mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
                 firstIndex++;
@@ -165,16 +165,16 @@ public class Library {
 
     //returns true if book1 is published earlier than book2
     public boolean checkDateGreater(Book book1, Book book2) {
-        if(book1.datePublished.year > book2.datePublished.year)
+        if(book1.getDatePublished().year > book2.getDatePublished().year)
             return false;
         else {
-            if(book1.datePublished.month > book2.dataPublished.month)
+            if(book1.getDatePublished().month > book2.getDatePublished().month)
                 return false;
             else {
-                if(book1.datePublished.day > book2.datePublished.day)
+                if(book1.getDatePublished().day > book2.getDatePublished().day)
                     return false;
                 else {
-                    if(book1.name.compareTo(book2.name) >= 0)
+                    if(book1.getName().compareTo(book2.getName()) >= 0)
                         return false;
                     else
                         return true;

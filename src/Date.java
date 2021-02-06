@@ -45,6 +45,17 @@ public class Date {
       day = c.get(Calendar.DATE);
    }
 
+   //accessor functions
+   public int getMonth() {
+      return this.month;
+   }
+   public int getYear() {
+      return this.year;
+   }
+   public int getDay() {
+      return this.day;
+   }
+
    // need to check for leap year
    public boolean isValid() {
       Calendar c = Calendar.getInstance();

@@ -11,7 +11,7 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) { //returns if the serial number of 2 book objects are the same
-        return this.number.equals(obj.number);
+        return obj.equals(this.number);
     }
 
     @Override
@@ -24,6 +24,19 @@ public class Book {
             availability = "is available.";
 
         return "Book#" + this.number + "::" + this.name + "::" + this.datePublished + "::" + availability;
+    }
+
+    public String getNumber() {
+        return this.number;
+    }
+    public Date getDatePublished() {
+        return this.datePublished;
+    }
+    public String getName() {
+        return this.name;
+    }
+    public boolean getCheckedOut() {
+        return this.checkedOut;
     }
 
 
