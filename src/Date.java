@@ -60,8 +60,10 @@ public class Date {
 
    public boolean isValid() { // checks if a Date is valid
       Calendar c = Calendar.getInstance();
-      if(this.year < 1900 || this.year > c.get(Calendar.YEAR))
+      if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
+         System.out.println("Here");
          return false;
+      }
 
       if(this.month > DECEMBER || this.month < JANUARY)
          return false;
@@ -71,8 +73,10 @@ public class Date {
          case JUNE:
          case SEPTEMBER:
          case NOVEMBER:
-            if(this.day > SHORTMONTH)
+            if(this.day > SHORTMONTH) {
                return false;
+            }
+            break;
          case JANUARY:
          case MARCH:
          case MAY:
@@ -80,18 +84,22 @@ public class Date {
          case AUGUST:
          case OCTOBER:
          case DECEMBER:
-            if(this.day > LONGMONTH)
+            if(this.day > LONGMONTH){
                return false;
+            }
+            break;
          case FEBRUARY:
             if(this.year % QUADRENNIAL == 0){
                if(this.year % CENTENNIAL == 0) {
                   if(this.year % QUATERCENTENNIAL == 0) {
-                     if(this.day > LEAP)
+                     if(this.day > LEAP){
                         return false;
+                     }
                   }
                } else {
-                  if(this.day > LEAP)
+                  if(this.day > LEAP) {
                      return false;
+                  }
                }
             } else {
                if(this.day > NOT_LEAP)
