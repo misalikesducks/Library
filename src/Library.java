@@ -42,31 +42,27 @@ public class Library {
     }
 
     public boolean remove(Book book) {
-        boolean foundBook = false;
-        int targetBookIndex;
-        for(int i = 0; i < numBooks; i++) { //traverses through books
-            if(this.books[i].equals(book)) {
-                targetBookIndex = i;
-                while(targetBookIndex < numBooks - 1) // found target index, shifting all elements after target
-                {
-                    this.books[i] = this.books[i+1];
-                    targetBookIndex++;
-                }
-                foundBook = true;
-                return foundBook;
-            }
+        if (book == null)
+            return false;
+
+        int targetBookIndex = this.find(book);
+        if (targetBookIndex == NOT_FOUND)
+            return false;
+        for (int i = targetBookIndex; i < numBooks - 1; i++) {
+            this.books[i] = this.books[i + 1];
+            targetBookIndex++;
         }
-        return foundBook;
+        return true;
     }
 
     public boolean checkOut(Book book) {
         boolean isAvailable = false;
-        for(int i = 0; i < numBooks; i++) {
-            if(this.books[i].equals(book) && !this.books[i].getCheckedOut()) {
-                this.books[i].setCheckedOut(true);
-                isAvailable = true;
-                break;
-            }
+        int targetIndex = this.find(book);
+        if (targetIndex == NOT_FOUND)
+            return false;
+        if(!books[targetIndex].getCheckedOut()) {
+            books[targetIndex].setCheckedOut(true);
+            isAvailable = true;
         }
         return isAvailable;
     }
@@ -101,71 +97,48 @@ public class Library {
 
     // HELPER METHODS
 
-    public Book[] sortBooks(Book[] originalBooks, int left, int right) {
-        Book[] sortedByDate = originalBooks;
-        if(left < right) {
-            int middle = left + (right - 1) / 2; // find the middle point
-
-            // sort the first and second halves
-            sortBooks(sortedByDate, left, middle);
-            sortBooks(sortedByDate, middle + 1, right);
-
-            merge(sortedByDate, left, middle, right); // merge the sorted halves
-        }
-        return sortedByDate;
+    public Book findFromNum(String num) { // creates a Book object if a book with the given serial number is found in the Library
+        for(int i = 0; i < this.numBooks; i++)
+            if(this.books[i].getNumber().equals(num))
+                return this.books[i];
+        return null;
     }
 
-    void merge(Book[] mergingBooks, int left, int middle, int right) {
-        // sizes of two subarrays to be merged
-        int sizeOfArray1 = middle - left + 1;
-        int sizeOfArray2 = right - middle;
-
-        // temp arrays
-        Book[] leftTemp = new Book[sizeOfArray1];
-        Book[] rightTemp = new Book[sizeOfArray2];
-
-        // copy data into temp arrays
-        for(int i = 0; i < sizeOfArray1; ++i) {
-            leftTemp[i] = mergingBooks[left + i];
+    public void quickSort(Book[] books, int low, int high, boolean sortType) {
+        if(low < high) {
+            int partitionIndex = partition(books, low, high, sortType);
+            quickSort(books, low, partitionIndex - 1, sortType);
+            quickSort(books, partitionIndex + 1, high, sortType);
         }
-        for(int j = 0; j < sizeOfArray2; ++j) {
-            rightTemp[j] = mergingBooks[middle + 1 + j];
-        }
+    }
 
-        // MERGING TEMP ARRAYS
+    public int partition(Book[] books, int low, int high, boolean sortType) {
+        Book pivot = books[high];
+        int small = (low - 1);
 
-        // initial indices of first and second subArrays
-        int firstIndex = 0, secondIndex = 0;
-
-        // initial index of merged subArray array
-        int mergedArrayIndex = left;
-        while(firstIndex < sizeOfArray1 && secondIndex < sizeOfArray2) {
-            if (!checkDateGreater(leftTemp[firstIndex], rightTemp[secondIndex])) {
-                mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
-                firstIndex++;
+        for(int j = low; j < high; j++) {
+            if(sortType == BY_DATE && !checkDateGreater(books[j], pivot)) {
+                small++;
+                Book temp = books[small];
+                books[small] = books[j];
+                books[j] = temp;
             } else {
-                mergingBooks[mergedArrayIndex] = rightTemp[secondIndex];
-                secondIndex++;
+                if(!checkNumGreater(books[j], pivot)) {
+                    small++;
+                    Book temp = books[small];
+                    books[small] = books[j];
+                    books[j] = temp;
+                }
             }
-            mergedArrayIndex++;
         }
 
-        // copy remaining elements of leftTemp if left over
-        while(firstIndex < sizeOfArray1) {
-            mergingBooks[mergedArrayIndex] = leftTemp[firstIndex];
-            firstIndex++;
-            mergedArrayIndex++;
-        }
-
-        // copy remaining elements of rightTemp if left over
-        while(secondIndex < sizeOfArray2) {
-            mergingBooks[mergedArrayIndex] = rightTemp[secondIndex];
-            secondIndex++;
-            mergedArrayIndex++;
-        }
+        Book temp = books[small + 1];
+        books[small + 1] = books[high];
+        books[high] = temp;
+        return small + 1;
     }
 
-    //returns true if book1 is published earlier than book2
+    // returns true if book1 is published earlier than book2
     public boolean checkDateGreater(Book book1, Book book2) {
         if(book1.getDatePublished().getYear() > book2.getDatePublished().getYear())
             return false;
@@ -183,6 +156,14 @@ public class Library {
                 }
             }
         }
+    }
 
+    // returns true if book1 has a smaller serial number than book2
+    public boolean checkNumGreater(Book book1, Book book2) {
+        int serial1 = Integer.parseInt(book1.getNumber());
+        int serial2 = Integer.parseInt(book2.getNumber());
+        if(serial1 < serial2)
+            return true;
+        return false;
     }
 }
