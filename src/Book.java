@@ -9,9 +9,18 @@ public class Book {
     private boolean checkedOut; // t = someone took it u fool, f = you can take it
     private Date datePublished;
 
+    // CONSTRUCTOR
+    public Book(String number, String name, boolean checkedOut, Date datePublished) {
+        this.number = number;
+        this.name = name;
+        this.checkedOut = checkedOut;
+        this.datePublished = datePublished;
+    }
+
     @Override
     public boolean equals(Object obj) { // returns if the serial number of 2 book objects are the same
-        return obj.number.equals(this.number);
+        Book comparingBook = (Book)obj;
+        return comparingBook.getNumber().equals(this.number);
     }
 
     @Override
@@ -23,10 +32,11 @@ public class Book {
         else
             availability = "is available.";
 
-        return "Book#" + this.number + "::" + this.name + "::" + this.datePublished + "::" + availability;
+        return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.toString() +
+                "::" + availability;
     }
 
-    // accessor methods
+    // ACCESSOR METHODS
     public String getNumber() {
         return this.number;
     }
@@ -43,7 +53,7 @@ public class Book {
         return this.datePublished;
     }
 
-    // modifier methods
+    // MODIFIER METHODS
     public void setNumber(String num) { // need to implement the number system
         this.number = num;
     }

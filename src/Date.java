@@ -31,8 +31,8 @@ public class Date {
    public static final int LEAP = 29;
    public static final int NOT_LEAP = 28;
 
-   public Date(String date) { // taking mm//dd//yyyy and create a Date Object
-      String[] arrOfDate = date.split("//", 0);
+   public Date(String date) { // taking mm/dd/yyyy and create a Date Object
+      String[] arrOfDate = date.split("/", 0);
       year = Integer.parseInt(arrOfDate[2]);
       month = Integer.parseInt(arrOfDate[0]);
       day = Integer.parseInt(arrOfDate[1]);
@@ -114,7 +114,7 @@ public class Date {
    // test-bed main
    public static void main(String arg[]) {
       System.out.println("Running testcase 1: ");
-      Date date1 = new Date("2//29//2019");
+      Date date1 = new Date("4/30/2019");
       if(date1.isValid()) {
          System.out.println("THIS IS RIGHT");
       } else {

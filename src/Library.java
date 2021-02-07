@@ -8,7 +8,11 @@ public class Library {
     private int numBooks; // the number of books currently in the bag
 
     public static final int NOT_FOUND = -1;
-    public static final int BAGSIZE = 4;
+    public static final int BAG_SIZE = 4;
+    public static final boolean BY_DATE = true;
+    public static final boolean BY_NUMBER = false;
+
+    public static int serialNumber = 10001;
 
     public Library() { // default constructor to create an empty bag
         this.books = new Book[4];
@@ -27,7 +31,7 @@ public class Library {
     }
 
     private void grow() { // helper method to grow the capacity by 4
-        int newTotalNumBooks = this.numBooks + BAGSIZE; // see if we need to make non magic number
+        int newTotalNumBooks = this.numBooks + BAG_SIZE; // see if we need to make non magic number
         Book[] newLibrary = new Book[newTotalNumBooks];
         for(int i = 0; i < this.numBooks; i++)
             newLibrary[i] = books[i];
@@ -39,6 +43,7 @@ public class Library {
             this.grow();
         this.books[numBooks] = book;
         numBooks++;
+        serialNumber++;
     }
 
     public boolean remove(Book book) {
@@ -52,10 +57,16 @@ public class Library {
             this.books[i] = this.books[i + 1];
             targetBookIndex++;
         }
+
+        this.books[numBooks - 1] = null;
+        this.numBooks--;
         return true;
     }
 
     public boolean checkOut(Book book) {
+        if(book == null)
+            return false;
+
         boolean isAvailable = false;
         int targetIndex = this.find(book);
         if (targetIndex == NOT_FOUND)
@@ -68,31 +79,35 @@ public class Library {
     }
 
     public boolean returns(Book book) {
+        if (book == null)
+            return false;
+
         boolean canReturn = false;
-        for(int i = 0; i < numBooks; i++) {
-            if(this.books[i].equals(book) && this.books[i].getCheckedOut()) {
-                this.books[i].setCheckedOut(false);
-                canReturn = true;
-                break;
-            }
+        int targetIndex = this.find(book);
+        if (this.books[targetIndex].getCheckedOut()) {
+            this.books[targetIndex].setCheckedOut(false);
+            canReturn = true;
         }
         return canReturn;
     }
 
-    // the only methods we can use system.out
     public void print() { // print the list of books in the bag
         for(int i = 0; i < numBooks; i++)
             System.out.println(this.books[i].toString());
     }
 
-    public void printByDate() { // print the list of books by datePublished (ascending)
-        Book[] sortedLibrary = sortBooks(this.books, 0, this.numBooks - 1);
-        for(int i = 0; i < numBooks; i++)
-            System.out.println(sortedLibrary[i].toString());
+    public void printByDate() { // print the list of books by datePublished (ascend
+        quickSort(this.books, 0, this.numBooks - 1, BY_DATE);
+        this.print();
     }
     public void printByNumber() { // print the list of books by number (ascending)
-        for(int i = 0; i < numBooks; i++)
-            System.out.println(this.books[i].toString());
+        quickSort(this.books, 0, this.numBooks - 1, BY_NUMBER);
+        this.print();
+    }
+
+    // ACCESSOR METHODS
+    public int getNumBooks(){
+        return this.numBooks;
     }
 
     // HELPER METHODS
@@ -123,7 +138,7 @@ public class Library {
                 books[small] = books[j];
                 books[j] = temp;
             } else {
-                if(!checkNumGreater(books[j], pivot)) {
+                if(checkNumGreater(books[j], pivot)) {
                     small++;
                     Book temp = books[small];
                     books[small] = books[j];
