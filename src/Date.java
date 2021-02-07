@@ -66,12 +66,23 @@ public class Date {
 
    public boolean isValid() { // checks if a Date is valid
       Calendar c = Calendar.getInstance();
+      int currMonth = c.get(Calendar.MONTH) + 1;
       if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
          return false;
       }
 
       if(this.month > DECEMBER || this.month < JANUARY)
          return false;
+      System.out.println(c.getTime());
+      System.out.println("Current date: " + currMonth + "/" + c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR));
+
+      // checks if the date is after our current date
+      if((this.year == c.get(Calendar.YEAR) && this.month > currMonth) // same year, month is later
+            || (this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day > c.get(Calendar.DATE))) // same year + month, day is later
+         return false;
+
+      if(this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day == c.get(Calendar.DATE)) // it's the current date
+         return true;
 
       switch(this.month) {
          case APRIL:
@@ -130,8 +141,7 @@ public class Date {
       date2.set(Calendar.YEAR, date.getYear());
 
       int compareDates = date1.compareTo(date2);
-      if(compareDates < NOT_TRUE)
-      {
+      if(compareDates < NOT_TRUE) {
          return true;
       }
       return false;
@@ -140,8 +150,32 @@ public class Date {
    // test-bed main
    public static void main(String arg[]) {
       System.out.println("Running testcase 1: ");
-      Date date1 = new Date("4/30/2019");
+      Date date1 = new Date("4/5/2021");
       if(date1.isValid()) {
+         System.out.println("THIS IS RIGHT");
+      } else {
+         System.out.println("No");
+      }
+
+      System.out.println("Running testcase 2: ");
+      Date date2 = new Date("2/19/2021");
+      if(date2.isValid()) {
+         System.out.println("THIS IS RIGHT");
+      } else {
+         System.out.println("No");
+      }
+
+      System.out.println("Running testcase 3: ");
+      Date date3 = new Date("2/7/2021");
+      if(date3.isValid()) {
+         System.out.println("THIS IS RIGHT");
+      } else {
+         System.out.println("No");
+      }
+
+      System.out.println("Running testcase 4: ");
+      Date date4 = new Date("2/3/2020");
+      if(date4.isValid()) {
          System.out.println("THIS IS RIGHT");
       } else {
          System.out.println("No");
