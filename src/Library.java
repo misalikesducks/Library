@@ -53,6 +53,8 @@ public class Library {
         int targetBookIndex = this.find(book);
         if (targetBookIndex == NOT_FOUND)
             return false;
+        this.books[targetBookIndex] = null; // i think we can get rid of this line?
+
         for (int i = targetBookIndex; i < numBooks - 1; i++) {
             this.books[i] = this.books[i + 1];
             targetBookIndex++;
@@ -132,11 +134,13 @@ public class Library {
         int small = (low - 1);
 
         for(int j = low; j < high; j++) {
-            if(sortType == BY_DATE && !checkDateGreater(books[j], pivot)) {
-                small++;
-                Book temp = books[small];
-                books[small] = books[j];
-                books[j] = temp;
+            if(sortType == BY_DATE) {
+                if(books[j].getDatePublished().earlierDate(pivot.getDatePublished())) {
+                    small++;
+                    Book temp = books[small];
+                    books[small] = books[j];
+                    books[j] = temp;
+                }
             } else {
                 if(checkNumGreater(books[j], pivot)) {
                     small++;
@@ -153,31 +157,11 @@ public class Library {
         return small + 1;
     }
 
-    // returns true if book1 is published earlier than book2
-    public boolean checkDateGreater(Book book1, Book book2) {
-        if(book1.getDatePublished().getYear() > book2.getDatePublished().getYear())
-            return false;
-        else {
-            if(book1.getDatePublished().getMonth() > book2.getDatePublished().getMonth())
-                return false;
-            else {
-                if(book1.getDatePublished().getDay() > book2.getDatePublished().getDay())
-                    return false;
-                else {
-                    if(book1.getName().compareTo(book2.getName()) >= 0)
-                        return false;
-                    else
-                        return true;
-                }
-            }
-        }
-    }
-
     // returns true if book1 has a smaller serial number than book2
     public boolean checkNumGreater(Book book1, Book book2) {
         int serial1 = Integer.parseInt(book1.getNumber());
         int serial2 = Integer.parseInt(book2.getNumber());
-        if(serial1 < serial2)
+        if(serial1 <= serial2)
             return true;
         return false;
     }

@@ -9,6 +9,8 @@ public class Date {
    private int month;
    private int day;
 
+   public static final int NOT_TRUE = 0;
+
    public static final int QUADRENNIAL = 4;
    public static final int CENTENNIAL = 100;
    public static final int QUATERCENTENNIAL = 400;
@@ -58,10 +60,13 @@ public class Date {
       return this.day;
    }
 
+   public String toString() {
+      return this.getMonth() + "/" + this.getDay() + "/" + this.getYear();
+   }
+
    public boolean isValid() { // checks if a Date is valid
       Calendar c = Calendar.getInstance();
       if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
-         System.out.println("Here");
          return false;
       }
 
@@ -111,6 +116,27 @@ public class Date {
       return true;
    }
 
+   //returns true if Date <= parameter date
+   public boolean earlierDate(Date date) {
+      Calendar date1 = Calendar.getInstance();
+      Calendar date2 = Calendar.getInstance();
+
+      date1.set(Calendar.MONTH, this.getMonth());
+      date1.set(Calendar.DATE, this.getDay());
+      date1.set(Calendar.YEAR, this.getYear());
+
+      date2.set(Calendar.MONTH, date.getMonth());
+      date2.set(Calendar.DATE, date.getDay());
+      date2.set(Calendar.YEAR, date.getYear());
+
+      int compareDates = date1.compareTo(date2);
+      if(compareDates < NOT_TRUE)
+      {
+         return true;
+      }
+      return false;
+   }
+
    // test-bed main
    public static void main(String arg[]) {
       System.out.println("Running testcase 1: ");
@@ -121,4 +147,5 @@ public class Date {
          System.out.println("No");
       }
    }
+
 }
