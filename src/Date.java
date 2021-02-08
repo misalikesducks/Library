@@ -47,7 +47,7 @@ public class Date {
       day = c.get(Calendar.DATE);
    }
 
-   // accessor methods
+   //accessor methods
    public int getMonth() {
       return this.month;
    }
@@ -64,7 +64,7 @@ public class Date {
       return this.getMonth() + "/" + this.getDay() + "/" + this.getYear();
    }
 
-   public boolean isValid() { // checks if a Date is valid
+   public boolean isValid() { //checks if a Date is valid
       Calendar c = Calendar.getInstance();
       int currMonth = c.get(Calendar.MONTH) + 1;
 
@@ -148,37 +148,36 @@ public class Date {
 
    //Testbed main to exercise the methods in this class
    public static void main(String arg[]) {
-      System.out.println("Running testcase 1: ");
-      Date date1 = new Date("4/5/2021");
-      if(date1.isValid()) {
-         System.out.println("THIS IS RIGHT");
-      } else {
-         System.out.println("No");
-      }
+      //Testing the isValid() method
+      //Test case 1: A date with year after current year
+      System.out.println("Running test case #1");
+      Date date1 = new Date("4/5/2022");
+      if(date1.isValid())
+         System.out.println("Test case #1, date is after our current date. PASSED.");
+      else
+         System.out.println("Test case #1, date is after our current date. FAILED.");
 
-      System.out.println("Running testcase 2: ");
-      Date date2 = new Date("2/19/2021");
-      if(date2.isValid()) {
-         System.out.println("THIS IS RIGHT");
-      } else {
-         System.out.println("No");
-      }
+      //Test Case 2: A valid month
+      System.out.println("Running test case #2");
+      Date date2 = new Date("2/13/2020");
+      if(date2.isValid())
+         System.out.println("Test case #2, month is valid. PASSED.");
+      else
+         System.out.println("Test case #2, month is valid. FAILED.");
 
-      System.out.println("Running testcase 3: ");
-      Date date3 = new Date("2/7/2021");
-      if(date3.isValid()) {
-         System.out.println("THIS IS RIGHT");
-      } else {
-         System.out.println("No");
-      }
+      System.out.println("Running test case #3");
+      Date date3 = new Date("2/29/2021");
+      if(date3.isValid())
+         System.out.println("Test case #3, date is same year and month but after current day. PASSED.");
+      else
+         System.out.println("Test case #3, date is same year and month but after current day. FAILED.");
 
-      System.out.println("Running testcase 4: ");
-      Date date4 = new Date("2/3/2020");
-      if(date4.isValid()) {
-         System.out.println("THIS IS RIGHT");
-      } else {
-         System.out.println("No");
-      }
+      System.out.println("Running test case #4");
+      Date date4 = new Date("3/40/2020");
+      if(date4.isValid())
+         System.out.println("Test case #4, invalid day. PASSED.");
+      else
+         System.out.println("Test case #4, invalid day. FAILED.");
    }
 
 }
