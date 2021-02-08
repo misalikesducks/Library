@@ -4,12 +4,12 @@
  *
  */
 public class Book {
-    private String number; // a five digit serial number unique to the book -- starting 10001
+    private String number;
     private String name;
     private boolean checkedOut; // t = someone took it u fool, f = you can take it
     private Date datePublished;
 
-    // CONSTRUCTOR
+    //CONSTRUCTOR
     public Book(String number, String name, boolean checkedOut, Date datePublished) {
         this.number = number;
         this.name = name;
@@ -18,13 +18,13 @@ public class Book {
     }
 
     @Override
-    public boolean equals(Object obj) { // returns if the serial number of 2 book objects are the same
+    public boolean equals(Object obj) { //returns if the serial number of 2 book objects are the same
         Book comparingBook = (Book)obj;
         return comparingBook.getNumber().equals(this.number);
     }
 
     @Override
-    public String toString() { // returns a textual representation of a book
+    public String toString() { //returns a textual representation of a book
         String availability;
 
         if(checkedOut)
@@ -36,7 +36,7 @@ public class Book {
                 "::" + availability;
     }
 
-    // ACCESSOR METHODS
+    //ACCESSOR METHODS
     public String getNumber() {
         return this.number;
     }
@@ -53,7 +53,7 @@ public class Book {
         return this.datePublished;
     }
 
-    // MODIFIER METHODS
+    //MODIFIER METHODS
     public void setNumber(String num) { // need to implement the number system
         this.number = num;
     }

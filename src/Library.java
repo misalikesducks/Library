@@ -4,8 +4,8 @@
  */
 
 public class Library {
-    private Book[] books; // array-based implementation of the bag data structure
-    private int numBooks; // the number of books currently in the bag
+    private Book[] books; //array-based implementation of the bag data structure
+    private int numBooks; //the number of books currently in the bag
 
     public static final int NOT_FOUND = -1;
     public static final int BAG_SIZE = 4;
@@ -14,14 +14,14 @@ public class Library {
 
     public static int serialNumber = 10001;
 
-    public Library() { // default constructor to create an empty bag
+    public Library() { //default constructor to create an empty bag
         this.books = new Book[4];
         numBooks = 0;
     }
 
-    private int find(Book book) { // helper method to find a book in the bag
+    private int find(Book book) { //helper method to find a book in the bag
         int bookNum = NOT_FOUND;
-        for(int i = 0; i < numBooks; i++) { //traverses through books to find target
+        for(int i = 0; i < numBooks; i++) {//traverses through books to find target
             if(books[i].equals(book)) {
                 bookNum = i;
                 break;
@@ -30,8 +30,8 @@ public class Library {
         return bookNum;
     }
 
-    private void grow() { // helper method to grow the capacity by 4
-        int newTotalNumBooks = this.numBooks + BAG_SIZE; // see if we need to make non magic number
+    private void grow() { //helper method to grow the capacity by 4
+        int newTotalNumBooks = this.numBooks + BAG_SIZE;
         Book[] newLibrary = new Book[newTotalNumBooks];
         for(int i = 0; i < this.numBooks; i++)
             newLibrary[i] = books[i];
@@ -47,15 +47,16 @@ public class Library {
     }
 
     public boolean remove(Book book) {
-        if (book == null)
+        if(book == null)
             return false;
 
         int targetBookIndex = this.find(book);
-        if (targetBookIndex == NOT_FOUND)
+        if(targetBookIndex == NOT_FOUND)
             return false;
-        this.books[targetBookIndex] = null; // i think we can get rid of this line?
 
-        for (int i = targetBookIndex; i < numBooks - 1; i++) {
+        this.books[targetBookIndex] = null;
+
+        for(int i = targetBookIndex; i < numBooks - 1; i++) {
             this.books[i] = this.books[i + 1];
             targetBookIndex++;
         }
@@ -93,28 +94,28 @@ public class Library {
         return canReturn;
     }
 
-    public void print() { // print the list of books in the bag
+    public void print() { //print the list of books in the bag
         for(int i = 0; i < numBooks; i++)
             System.out.println(this.books[i].toString());
     }
 
-    public void printByDate() { // print the list of books by datePublished (ascend
+    public void printByDate() { //print the list of books by datePublished (ascend
         quickSort(this.books, 0, this.numBooks - 1, BY_DATE);
         this.print();
     }
-    public void printByNumber() { // print the list of books by number (ascending)
+    public void printByNumber() { //print the list of books by number (ascending)
         quickSort(this.books, 0, this.numBooks - 1, BY_NUMBER);
         this.print();
     }
 
-    // ACCESSOR METHODS
+    //ACCESSOR METHODS
     public int getNumBooks(){
         return this.numBooks;
     }
 
-    // HELPER METHODS
+    //HELPER METHODS
 
-    public Book findFromNum(String num) { // creates a Book object if a book with the given serial number is found in the Library
+    public Book findFromNum(String num) { //creates a Book object if a book with the given serial number is found in the Library
         for(int i = 0; i < this.numBooks; i++)
             if(this.books[i].getNumber().equals(num))
                 return this.books[i];
@@ -158,7 +159,7 @@ public class Library {
         return small + 1;
     }
 
-    // returns true if book1 has a smaller serial number than book2
+    //returns true if book1 has a smaller serial number than book2
     public boolean checkNumGreater(Book book1, Book book2) {
         int serial1 = Integer.parseInt(book1.getNumber());
         int serial2 = Integer.parseInt(book2.getNumber());

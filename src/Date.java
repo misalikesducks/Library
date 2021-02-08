@@ -33,14 +33,14 @@ public class Date {
    public static final int LEAP = 29;
    public static final int NOT_LEAP = 28;
 
-   public Date(String date) { // taking mm/dd/yyyy and create a Date Object
+   public Date(String date) { //taking mm/dd/yyyy and create a Date Object
       String[] arrOfDate = date.split("/", 0);
       year = Integer.parseInt(arrOfDate[2]);
       month = Integer.parseInt(arrOfDate[0]);
       day = Integer.parseInt(arrOfDate[1]);
    }
 
-   public Date() { // create an object with today's date
+   public Date() { //create an object with today's date
       Calendar c = Calendar.getInstance();
       year = c.get(Calendar.YEAR);
       month = c.get(Calendar.MONTH);
@@ -67,19 +67,19 @@ public class Date {
    public boolean isValid() { // checks if a Date is valid
       Calendar c = Calendar.getInstance();
       int currMonth = c.get(Calendar.MONTH) + 1;
-      if(this.year < 1900 || this.year > c.get(Calendar.YEAR)) {
+
+      if(this.year < 1900 || this.year > c.get(Calendar.YEAR))
          return false;
-      }
 
       if(this.month > DECEMBER || this.month < JANUARY)
          return false;
 
-      // checks if the date is after our current date
-      if((this.year == c.get(Calendar.YEAR) && this.month > currMonth) // same year, month is later
-            || (this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day > c.get(Calendar.DATE))) // same year + month, day is later
+      //checks if the date is after our current date
+      if((this.year == c.get(Calendar.YEAR) && this.month > currMonth) //same year, month is later
+            || (this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day > c.get(Calendar.DATE))) //same year + month, day is later
          return false;
 
-      if(this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day == c.get(Calendar.DATE)) // it's the current date
+      if(this.year == c.get(Calendar.YEAR) && this.month == currMonth && this.day == c.get(Calendar.DATE)) //it's the current date
          return true;
 
       switch(this.month) {
@@ -89,7 +89,6 @@ public class Date {
          case NOVEMBER:
             if(this.day > SHORTMONTH) {
                return false;
-            }
             break;
          case JANUARY:
          case MARCH:
@@ -98,9 +97,8 @@ public class Date {
          case AUGUST:
          case OCTOBER:
          case DECEMBER:
-            if(this.day > LONGMONTH){
+            if(this.day > LONGMONTH)
                return false;
-            }
             break;
          case FEBRUARY:
             if(this.year % QUADRENNIAL == 0){
@@ -125,7 +123,7 @@ public class Date {
       return true;
    }
 
-   //returns true if Date <= parameter date
+   //Returns true if Date <= parameter date
    public boolean earlierDate(Date date, String name1, String name2) {
       Calendar date1 = Calendar.getInstance();
       Calendar date2 = Calendar.getInstance();
@@ -142,16 +140,13 @@ public class Date {
       if(compareDates < NOT_TRUE) {
          return true;
       } else if(compareDates == 0) {
-            //System.out.println("hello");
-            if(name1.compareTo(name2) < 0) {
-               //System.out.println(name1 + " / " + name2);
+            if(name1.compareTo(name2) < 0)
                return true;
-            }
       }
       return false;
    }
 
-   // test-bed main
+   //Testbed main to exercise the methods in this class
    public static void main(String arg[]) {
       System.out.println("Running testcase 1: ");
       Date date1 = new Date("4/5/2021");
