@@ -73,8 +73,6 @@ public class Date {
 
       if(this.month > DECEMBER || this.month < JANUARY)
          return false;
-      System.out.println(c.getTime());
-      System.out.println("Current date: " + currMonth + "/" + c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR));
 
       // checks if the date is after our current date
       if((this.year == c.get(Calendar.YEAR) && this.month > currMonth) // same year, month is later
@@ -128,7 +126,7 @@ public class Date {
    }
 
    //returns true if Date <= parameter date
-   public boolean earlierDate(Date date) {
+   public boolean earlierDate(Date date, String name1, String name2) {
       Calendar date1 = Calendar.getInstance();
       Calendar date2 = Calendar.getInstance();
 
@@ -143,6 +141,12 @@ public class Date {
       int compareDates = date1.compareTo(date2);
       if(compareDates < NOT_TRUE) {
          return true;
+      } else if(compareDates == 0) {
+            //System.out.println("hello");
+            if(name1.compareTo(name2) < 0) {
+               //System.out.println(name1 + " / " + name2);
+               return true;
+            }
       }
       return false;
    }

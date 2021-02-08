@@ -19,10 +19,6 @@ public class Kiosk {
             String input  = scan.nextLine();
             String[] arrOfInput = input.split(",", 0); //splits string by commas
 
-            /*for(String str: arrOfInput)
-               System.out.println(str + " ");Q
-               */
-
             switch(arrOfInput[0]) {
                case "A": // add
                   Date tempDate = new Date(arrOfInput[2]);
@@ -44,11 +40,11 @@ public class Kiosk {
                   if(!bag.checkOut(bag.findFromNum(arrOfInput[1])))
                      System.out.println("Book#" + arrOfInput[1] + " is not available.");
                   else
-                     System.out.println("You've checked out Book#" + arrOfInput[1]);
+                     System.out.println("You've checked out Book#" + arrOfInput[1] + ". Enjoy!");
                   break;
                case "I": // return
                   if(!bag.returns(bag.findFromNum(arrOfInput[1])))
-                     System.out.println("Unable to return Book#" + arrOfInput[1]);
+                     System.out.println("Unable to return Book#" + arrOfInput[1] + ".");
                   else
                      System.out.println("Book#" + arrOfInput[1] + " return has been completed. Thanks!");
                   break;
