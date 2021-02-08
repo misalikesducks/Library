@@ -135,7 +135,8 @@ public class Library {
 
         for(int j = low; j < high; j++) {
             if(sortType == BY_DATE) {
-                if(books[j].getDatePublished().earlierDate(pivot.getDatePublished())) {
+                if(books[j].getDatePublished().earlierDate(pivot.getDatePublished(),
+                        books[j].getName(), pivot.getName())) {
                     small++;
                     Book temp = books[small];
                     books[small] = books[j];
