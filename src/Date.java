@@ -1,6 +1,7 @@
 /**
- * @author Connie Chen
- * @author Tiffany Lee
+ * Date class represents String of date object.
+ * Stores Year, Month, and Day of objects to compare.
+ * @author Connie Chen, Tiffany Lee
  */
 import java.util.Calendar;
 
@@ -33,37 +34,67 @@ public class Date {
    public static final int LEAP = 29;
    public static final int NOT_LEAP = 28;
 
-   public Date(String date) { //taking mm/dd/yyyy and create a Date Object
+   /**
+    * Create an object with a given String.
+    * @param date in String format of MM/DD/YYYY
+    */
+   public Date(String date) {
       String[] arrOfDate = date.split("/", 0);
       year = Integer.parseInt(arrOfDate[2]);
       month = Integer.parseInt(arrOfDate[0]);
       day = Integer.parseInt(arrOfDate[1]);
    }
 
-   public Date() { //create an object with today's date
+   /**
+    * Create an object with the current date.
+    */
+   public Date() {
       Calendar c = Calendar.getInstance();
       year = c.get(Calendar.YEAR);
       month = c.get(Calendar.MONTH);
       day = c.get(Calendar.DATE);
    }
 
-   //accessor methods
+   //ACCESSOR METHODS
+
+   /**
+    * Accesses a Date object's data member month.
+    * @return the object's Month
+    */
    public int getMonth() {
       return this.month;
    }
 
+   /**
+    * Accesses a Date object's data member year.
+    * @return the object's year
+    */
    public int getYear() {
       return this.year;
    }
 
+   /**
+    * Accesses a Date object's data member Day.
+    * @return the object's day
+    */
    public int getDay() {
       return this.day;
    }
 
+   /**
+    * Returns the date of an object in String format.
+    * @return String of the date of the object in MM/DD/YYYY format
+    */
    public String toString() {
       return this.getMonth() + "/" + this.getDay() + "/" + this.getYear();
    }
 
+   /**
+    * Checks if a Date object has a valid date.
+    * A valid date has the year after 1900 and does not surpass current date.
+    * Leap year and valid days of a month is checked also.
+    * @return true if the date is valid and false otherwise
+    */
    public boolean isValid() { //checks if a Date is valid
       Calendar c = Calendar.getInstance();
       int currMonth = c.get(Calendar.MONTH) + 1;
@@ -87,7 +118,7 @@ public class Date {
          case JUNE:
          case SEPTEMBER:
          case NOVEMBER:
-            if(this.day > SHORTMONTH) {
+            if(this.day > SHORTMONTH)
                return false;
             break;
          case JANUARY:
@@ -123,7 +154,13 @@ public class Date {
       return true;
    }
 
-   //Returns true if Date <= parameter date
+   /**
+    * Compares the current instance of Date with a second Date object
+    * @param date object to be compared
+    * @param name1 of the first book to be compared
+    * @param name2 of the second book to be compared
+    * @return true if the current Date instance is earlier than Date object passed in, false otherwise
+    */
    public boolean earlierDate(Date date, String name1, String name2) {
       Calendar date1 = Calendar.getInstance();
       Calendar date2 = Calendar.getInstance();
@@ -146,7 +183,11 @@ public class Date {
       return false;
    }
 
-   //Testbed main to exercise the methods in this class
+   /**
+    * Testbed main for .isValid() method
+    * Runs test cases
+    * @param arg
+    */
    public static void main(String arg[]) {
       //Testing the isValid() method
       //Test case 1: A date with year after current year
