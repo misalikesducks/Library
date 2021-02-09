@@ -190,35 +190,93 @@ public class Date {
     */
    public static void main(String arg[]) {
       //Testing the isValid() method
-      //Test case 1: A date with year after current year
+
+      //Test Case 1: A date with valid month, day, and year
       System.out.println("Running test case #1");
-      Date date1 = new Date("4/5/2022");
-      if(date1.isValid())
-         System.out.println("Test case #1, date is after our current date. PASSED.");
-      else
-         System.out.println("Test case #1, date is after our current date. FAILED.");
-
-      //Test Case 2: A valid month
-      System.out.println("Running test case #2");
-      Date date2 = new Date("2/13/2020");
+      Date date2 = new Date("2/13/2009");
       if(date2.isValid())
-         System.out.println("Test case #2, month is valid. PASSED.");
+         System.out.println("Test case #1, month is valid. PASSED.");
       else
-         System.out.println("Test case #2, month is valid. FAILED.");
+         System.out.println("Test case #1, month is valid. FAILED.");
 
-      System.out.println("Running test case #3");
-      Date date3 = new Date("2/29/2021");
-      if(date3.isValid())
-         System.out.println("Test case #3, date is same year and month but after current day. PASSED.");
+      //Test Case 2.1: A date with an invalid month that is after current date
+      System.out.println("\nRunning test case #2.1");
+      Date date9 = new Date("4/8/2021");
+      if(!date9.isValid())
+         System.out.println("Test case #2.1, invalid month (after current date). PASSED.");
       else
-         System.out.println("Test case #3, date is same year and month but after current day. FAILED.");
+         System.out.println("Test case #2.1, invalid month (after current date). FAILED.");
 
-      System.out.println("Running test case #4");
+      //Test Case 2.2: A date with invalid month
+      System.out.println("\nRunning test case #2.2");
+      Date date7 = new Date("37/2/2017");
+      if(!date7.isValid())
+         System.out.println("Test case #2.2, invalid month. PASSED.");
+      else
+         System.out.println("Test case #2.2, invalid month. FAILED");
+
+      //Test Case 3.1: A date with invalid day (long month)
+      System.out.println("\nRunning test case #3.1");
       Date date4 = new Date("3/40/2020");
-      if(date4.isValid())
-         System.out.println("Test case #4, invalid day. PASSED.");
+      if(!date4.isValid())
+         System.out.println("Test case #3.1, invalid day. PASSED.");
       else
-         System.out.println("Test case #4, invalid day. FAILED.");
-   }
+         System.out.println("Test case #3.1, invalid day. FAILED.");
 
+      //Test Case 3.2: A date with invalid day (short month)
+      System.out.println("\nRunning test case #3.2");
+      Date date8 = new Date("4/31/2007");
+      if(!date8.isValid())
+         System.out.println("Test case #3.2, invalid day (short month). PASSED.");
+      else
+         System.out.println("Test case #3.2, invalid day (short month). FAILED.");
+
+      //Test Case 3.3: An invalid date with day after current date
+      System.out.println("\nRunning test case #3.3");
+      Date date3 = new Date("2/27/2021");
+      if(!date3.isValid())
+         System.out.println("Test case #3.3, date is same year and month but after current day. PASSED.");
+      else
+         System.out.println("Test case #3.3, date is same year and month but after current day. FAILED.");
+
+      //Test Case 4.1: A date with an invalid year
+      System.out.println("\nRunning test case #4.1");
+      Date date10 = new Date("8/16/1456");
+      if(!date10.isValid())
+         System.out.println("Test case #4.1, invalid year. PASSED.");
+      else
+         System.out.println("Test case #4.1, invalid year. FAILED.");
+
+      //Test case 4.2: An invalid date with year after current year
+      System.out.println("\nRunning test case #4.2");
+      Date date1 = new Date("4/5/2022");
+      if(!date1.isValid())
+         System.out.println("Test case #4.2, date is after our current date. PASSED.");
+      else
+         System.out.println("Test case #4.2, date is after our current date. FAILED.");
+
+      //Test Case 5: An invalid date after current date
+      System.out.println("\nRunning Test Case #5");
+      Date date11 = new Date("11/01/2022");
+      if(!date11.isValid())
+         System.out.println("Test case #5, invalid date (after current date). PASSED.");
+      else
+         System.out.println("Test case #5, invalid date (after current date). FAILED.");
+
+      //Test Case 6.1: Valid leap year date
+      System.out.println("\nRunning test case #6.1");
+      Date date5 = new Date("2/29/2016");
+      if(date5.isValid())
+         System.out.println("Test case #6.1, valid leap year date. PASSED.");
+      else
+         System.out.println("Test case #6.1, valid leap year date. FAILED.");
+
+      //Test Case 6.2: Invalid leap year date
+      System.out.println("\nRunning test case #6.2");
+      Date date6 = new Date("2/29/2005");
+      if(!date6.isValid())
+         System.out.println("Test case #6.2, invalid leap year date. PASSED.");
+      else
+         System.out.println("Test case #6.2, invalid leap year date. FAILED.");
+   }
 }

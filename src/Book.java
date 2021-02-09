@@ -7,7 +7,7 @@
 public class Book {
     private String number;
     private String name;
-    private boolean checkedOut; // t = someone took it u fool, f = you can take it
+    private boolean checkedOut;
     private Date datePublished;
 
     //CONSTRUCTOR

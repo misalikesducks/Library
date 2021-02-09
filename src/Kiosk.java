@@ -1,21 +1,22 @@
 /**
- * @author Connie Chen
- * @author Tiffany Lee
+ * Kiosk class is the user interface class used for processing command lines from console.
+ * @author Connie Chen, Tiffany Lee
  */
 import java.util.StringTokenizer;
 import java.util.Scanner;
 
 public class Kiosk {
-    public void run() { //handles inputs and outputs
+   /**
+    * Handles the inputs and outputs of the console
+    */
+   public void run() {
        System.out.println("Library Kiosk running.");
        Scanner scan = new Scanner(System.in);
 
        boolean breakLoop = false;
-
        Library bag = new Library();
 
        while(!breakLoop && scan.hasNextLine()) { //loops while there are inputs
-
             String input  = scan.nextLine();
             String[] arrOfInput = input.split(",", 0); //splits string by commas
 
