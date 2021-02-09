@@ -63,7 +63,7 @@ public class Date {
 
    /**
     * Accesses a Date object's data member month.
-    * @return the object's Month
+    * @return int representing the object's month
     */
    public int getMonth() {
       return this.month;
@@ -71,7 +71,7 @@ public class Date {
 
    /**
     * Accesses a Date object's data member year.
-    * @return the object's year
+    * @return int representing the object's year
     */
    public int getYear() {
       return this.year;
@@ -79,7 +79,7 @@ public class Date {
 
    /**
     * Accesses a Date object's data member Day.
-    * @return the object's day
+    * @return int representing the object's day
     */
    public int getDay() {
       return this.day;

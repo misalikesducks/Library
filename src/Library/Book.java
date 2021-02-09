@@ -17,7 +17,7 @@ public class Book {
      * Creates a Book object that can be checkedOut
      * @param number of the serial number
      * @param name of the Book
-     * @param checkedOut - variable representing if the Book is available
+     * @param checkedOut variable representing if the Book is available
      * @param datePublished of the Book
      */
     public Book(String number, String name, boolean checkedOut, Date datePublished) {

@@ -67,7 +67,7 @@ public class Library {
 
     /**
      * Inserts a Book object in the Library bag data structure.
-     * @param book
+     * @param book to be added to the Library bag data structure
      */
     public void add(Book book) {
         if(this.numBooks == this.books.length)
